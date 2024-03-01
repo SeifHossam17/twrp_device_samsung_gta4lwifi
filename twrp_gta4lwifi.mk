@@ -5,25 +5,21 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+PRODUCT_RELEASE_NAME := gta4lwifi
 
-# Inherit some common Omni stuff.
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+
+# Inherit from twrp product configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Inherit from gta4lwifi device
+# Inherit from this device
 $(call inherit-product, device/samsung/gta4lwifi/device.mk)
 
+# Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := gta4lwifi
 PRODUCT_NAME := twrp_gta4lwifi
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL := SM-T500
 PRODUCT_MANUFACTURER := samsung
-
-PRODUCT_GMS_CLIENTID_BASE := android-samsung-ss
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="gta4lwifixx-user 11 RP1A.200720.012 T500XXU4CWD2 release-keys"
-
-BUILD_FINGERPRINT := samsung/gta4lwifixx/gta4lwifi:11/RP1A.200720.012/T500XXU4CWD2:user/release-keys
+PRODUCT_GMS_CLIENTID_BASE := android-samsung
